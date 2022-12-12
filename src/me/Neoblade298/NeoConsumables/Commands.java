@@ -52,6 +52,7 @@ public class Commands implements CommandExecutor, TabCompleter {
 				if (args[1 + offset].equalsIgnoreCase("boss")) {
 					p.getInventory().addItem(Items.getBossChestToken(p, System.currentTimeMillis()));
 					sender.sendMessage("§4[§c§lMLMC§4] §7Successfully gave boss token to §e" + p.getName());
+					Bukkit.getLogger().info("[NeoConsumables] User " + sender.getName() + " gave player " + p.getName() + " a boss token");
 					return true;
 				}
 				else {
@@ -64,6 +65,7 @@ public class Commands implements CommandExecutor, TabCompleter {
 					if (cons != null) {
 						p.getInventory().addItem(cons.getItem(p, amt));
 						sender.sendMessage("§4[§c§lMLMC§4] §7Successfully gave " + cons.getDisplay() + "§7 to §e" + p.getName());
+						Bukkit.getLogger().info("[NeoConsumables] User " + sender.getName() + " gave player " + p.getName() + " a " + cons.getDisplay());
 						return true;
 					}
 					else {
