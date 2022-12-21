@@ -69,7 +69,7 @@ public class Commands implements CommandExecutor, TabCompleter {
 						return true;
 					}
 					else {
-						sender.sendMessage("§4[§c§lMLMC§4] §cInvalid key!");
+						sender.sendMessage("§4[§c§lMLMC§4] §cInvalid consumable key!");
 						return true;
 					}
 				}
