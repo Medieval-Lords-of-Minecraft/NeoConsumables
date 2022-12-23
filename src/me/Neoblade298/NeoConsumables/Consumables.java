@@ -1,6 +1,5 @@
 package me.Neoblade298.NeoConsumables;
 
-import com.sucy.skill.SkillAPI;
 import com.sucy.skill.api.util.BuffType;
 
 import de.tr7zw.nbtapi.NBTItem;
@@ -23,6 +22,7 @@ import me.Neoblade298.NeoConsumables.objects.TokenConsumable;
 import me.neoblade298.neocore.NeoCore;
 import me.neoblade298.neocore.info.BossInfo;
 import me.neoblade298.neocore.info.InfoAPI;
+import me.neoblade298.neocore.instancing.InstanceType;
 import me.neoblade298.neocore.player.PlayerFields;
 import me.neoblade298.neocore.player.PlayerTags;
 import net.md_5.bungee.api.ChatColor;
@@ -85,6 +85,7 @@ public class Consumables extends JavaPlugin implements Listener {
 		getCommand("cons").setExecutor(new Commands(this, generatableConsumables));
 		Bukkit.getPluginManager().registerEvents(this, this);
 		Bukkit.getPluginManager().registerEvents(new ConsumableManager(this), this);
+		if (NeoCore.getInstanceType() != InstanceType.TOWNY) Bukkit.getPluginManager().registerEvents(new SkillAPIListener(), this);
 	}
 	
 	public static Consumables inst() {
@@ -104,7 +105,10 @@ public class Consumables extends JavaPlugin implements Listener {
 		// General
 		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(new File(getDataFolder(), "config.yml"));
 		ConfigurationSection gen = cfg.getConfigurationSection("general");
-		FoodConsumable.setDefaultCooldown(gen.getInt("default-cooldown", 45) * 1000);
+		
+		
+		// FoodConsumable uses SkillAPI, can't do this in Towny
+		if (NeoCore.getInstanceType() != InstanceType.TOWNY) FoodConsumable.setDefaultCooldown(gen.getInt("default-cooldown", 45) * 1000);
 	}
 
 	private void loadConsumableDirectory(File file) {
@@ -334,9 +338,6 @@ public class Consumables extends JavaPlugin implements Listener {
 			return;
 		}
 		if (!e.getHand().equals(EquipmentSlot.HAND)) {
-			return;
-		}
-		if (!SkillAPI.isLoaded(p)) {
 			return;
 		}
 		ItemStack item = p.getInventory().getItemInMainHand();

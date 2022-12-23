@@ -11,13 +11,8 @@ import java.util.logging.Level;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.scheduler.BukkitTask;
-
-import com.sucy.skill.api.event.PlayerAttributeLoadEvent;
-import com.sucy.skill.api.event.PlayerAttributeUnloadEvent;
-import com.sucy.skill.api.event.PlayerLoadCompleteEvent;
 
 import me.Neoblade298.NeoConsumables.objects.DurationEffects;
 import me.Neoblade298.NeoConsumables.objects.FoodConsumable;
@@ -28,7 +23,7 @@ import me.neoblade298.neocore.io.IOManager;
 public class ConsumableManager implements Listener, IOComponent {
 	public static HashMap<UUID, PlayerCooldowns> cds = new HashMap<UUID, PlayerCooldowns>();
 	public static HashMap<UUID, DurationEffects> effects = new HashMap<UUID, DurationEffects>();
-	private static HashSet<UUID> loading = new HashSet<UUID>();
+	public static HashSet<UUID> loading = new HashSet<UUID>();
 	private static Consumables main;
 	
 	public ConsumableManager(Consumables main) {
@@ -76,13 +71,6 @@ public class ConsumableManager implements Listener, IOComponent {
 			ex.printStackTrace();
 		}
 	}
-	
-	@EventHandler
-	public void onLoadSynchronous(PlayerLoadCompleteEvent e) {
-		// This needs to exist because loadplayer is async and
-		// attributeload event is not async so it happens before loadplayer
-		loading.add(e.getPlayer().getUniqueId());
-	}
 
 	@Override
 	public void loadPlayer(Player p, Statement stmt) {
@@ -118,14 +106,14 @@ public class ConsumableManager implements Listener, IOComponent {
 		}
 	}
 	
-	private void endEffects(UUID uuid) {
+	public static void endEffects(UUID uuid) {
 		DurationEffects effs = ConsumableManager.effects.get(uuid);
 		if (effs != null) {
 			effs.endEffects(false);
 		}
 	}
 	
-	public void startEffects(UUID uuid) {
+	public static void startEffects(UUID uuid) {
 		DurationEffects effs = ConsumableManager.effects.get(uuid);
 		if (effs != null) {
 			if (Consumables.debug) {
@@ -138,18 +126,6 @@ public class ConsumableManager implements Listener, IOComponent {
 				Bukkit.getLogger().log(Level.INFO, "[NeoConsumables] No effects for UUID " + uuid);
 			}
 		}
-	}
-	
-	@EventHandler
-	public void onAttributeLoad(PlayerAttributeLoadEvent e) {
-		if (!loading.contains(e.getPlayer().getUniqueId())) {
-			startEffects(e.getPlayer().getUniqueId());
-		}
-	}
-	
-	@EventHandler
-	public void onAttributeUnload(PlayerAttributeUnloadEvent e) {
-		endEffects(e.getPlayer().getUniqueId());
 	}
 
 	@Override
