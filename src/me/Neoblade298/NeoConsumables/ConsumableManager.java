@@ -28,7 +28,7 @@ public class ConsumableManager implements Listener, IOComponent {
 	
 	public ConsumableManager(Consumables main) {
 		ConsumableManager.main = main;
-		IOManager.register(main, this);
+		IOManager.register(main, this, "ConsumableManager");
 	}
 
 	@Override
@@ -126,11 +126,6 @@ public class ConsumableManager implements Listener, IOComponent {
 				Bukkit.getLogger().log(Level.INFO, "[NeoConsumables] No effects for UUID " + uuid);
 			}
 		}
-	}
-
-	@Override
-	public String getKey() {
-		return "ConsumableManager";
 	}
 
 	@Override
