@@ -84,8 +84,10 @@ public class Consumables extends JavaPlugin implements Listener {
 
 		getCommand("cons").setExecutor(new Commands(this, generatableConsumables));
 		Bukkit.getPluginManager().registerEvents(this, this);
-		Bukkit.getPluginManager().registerEvents(new ConsumableManager(this), this);
-		if (NeoCore.getInstanceType() != InstanceType.TOWNY) Bukkit.getPluginManager().registerEvents(new SkillAPIListener(), this);
+		if (NeoCore.getInstanceType() != InstanceType.TOWNY) {
+			Bukkit.getPluginManager().registerEvents(new ConsumableManager(this), this);
+			Bukkit.getPluginManager().registerEvents(new SkillAPIListener(), this);
+		}
 	}
 	
 	public static Consumables inst() {
