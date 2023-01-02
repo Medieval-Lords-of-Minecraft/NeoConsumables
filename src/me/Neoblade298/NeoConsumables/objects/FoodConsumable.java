@@ -308,7 +308,7 @@ public class FoodConsumable extends Consumable implements GeneratableConsumable 
 			lore.add("§9Potions:");
 			for (PotionEffect pot : potions) {
 				// Only potions are in ticks because PotionEffect is a bukkit object
-				lore.add("§7- §9" + pot.getType().toString() + " " + pot.getAmplifier() + " [" + (pot.getDuration() / 20) + "s]");
+				lore.add("§7- §9" + pot.getType().getName() + " " + pot.getAmplifier() + " [" + (pot.getDuration() / 20) + "s]");
 			}
 		}
 		
