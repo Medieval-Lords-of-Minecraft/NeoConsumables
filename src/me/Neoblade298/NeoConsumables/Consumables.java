@@ -342,6 +342,7 @@ public class Consumables extends JavaPlugin implements Listener {
 		if (!e.getHand().equals(EquipmentSlot.HAND)) {
 			return;
 		}
+		if (!NeoCore.isLoaded(p)) return;
 		ItemStack item = p.getInventory().getItemInMainHand();
 		if (item == null || item.getType().equals(Material.AIR)) {
 			return;
