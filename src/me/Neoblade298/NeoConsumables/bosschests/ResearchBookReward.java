@@ -1,8 +1,10 @@
 package me.Neoblade298.NeoConsumables.bosschests;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import me.Neoblade298.NeoConsumables.Util;
+import me.neoblade298.neocore.bukkit.bungee.BungeeAPI;
+import me.neoblade298.neocore.util.Util;
 
 public class ResearchBookReward extends ChestReward {
 	private String mob;
@@ -21,18 +23,18 @@ public class ResearchBookReward extends ChestReward {
 		if (!this.type.equalsIgnoreCase("normal")) {
 			points = 25;
 		}
-		
-		Util.serverCommand("nr spawnbookboss " + p.getName() + " " + mob + " " + points);
+
+		Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "nr spawnbookboss " + p.getName() + " " + mob + " " + points);
 	}
 
 	@Override
 	public void sendMessage(Player p) {
 		if (this.type.equalsIgnoreCase("normal")) {
-			Util.sendMessage(p, "&7- a(n) &4&l" + display + " &7research book!");
+			Util.msg(p, "&7- a(n) &4&l" + display + " &7research book!", false);
 		}
 		else {
-			Util.sendMessage(p, "&7- an advanced &4&l" + display + " &7research book!");
-			Util.serverBroadcast("&4[&c&lMLMC&4] &e" + p.getName() + " &7has found an advanced &4&l" + display + " &7research book!");
+			Util.msg(p, "&7- an advanced &4&l" + display + " &7research book!", false);
+			BungeeAPI.broadcast("&4[&c&lMLMC&4] &e" + p.getName() + " &7has found an advanced &4&l" + display + " &7research book!");
 		}
 	}
 

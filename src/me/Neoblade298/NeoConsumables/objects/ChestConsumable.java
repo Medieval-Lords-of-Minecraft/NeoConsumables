@@ -22,8 +22,8 @@ import de.tr7zw.nbtapi.NBTItem;
 import me.Neoblade298.NeoConsumables.Consumables;
 import me.Neoblade298.NeoConsumables.bosschests.ChestReward;
 import me.Neoblade298.NeoConsumables.bosschests.ChestStage;
-import me.neoblade298.neocore.NeoCore;
-import me.neoblade298.neocore.instancing.InstanceType;
+import me.neoblade298.neocore.bukkit.InstanceType;
+import me.neoblade298.neocore.bukkit.NeoCore;
 
 public class ChestConsumable extends Consumable implements GeneratableConsumable {
 	private static Random gen = new Random();

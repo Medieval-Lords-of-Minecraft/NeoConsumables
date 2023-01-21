@@ -17,8 +17,8 @@ import org.bukkit.scheduler.BukkitTask;
 import me.Neoblade298.NeoConsumables.objects.DurationEffects;
 import me.Neoblade298.NeoConsumables.objects.FoodConsumable;
 import me.Neoblade298.NeoConsumables.objects.PlayerCooldowns;
-import me.neoblade298.neocore.io.IOComponent;
-import me.neoblade298.neocore.io.IOManager;
+import me.neoblade298.neocore.bukkit.NeoCore;
+import me.neoblade298.neocore.bukkit.io.IOComponent;
 
 public class ConsumableManager implements Listener, IOComponent {
 	public static HashMap<UUID, PlayerCooldowns> cds = new HashMap<UUID, PlayerCooldowns>();
@@ -28,7 +28,7 @@ public class ConsumableManager implements Listener, IOComponent {
 	
 	public ConsumableManager(Consumables main) {
 		ConsumableManager.main = main;
-		IOManager.register(main, this, "ConsumableManager");
+		NeoCore.registerIOComponent(main, this, "ConsumableManager");
 	}
 
 	@Override

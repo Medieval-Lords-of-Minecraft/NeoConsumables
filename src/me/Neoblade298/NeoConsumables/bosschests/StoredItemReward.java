@@ -3,8 +3,8 @@ package me.Neoblade298.NeoConsumables.bosschests;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-import me.Neoblade298.NeoConsumables.Util;
 import me.Neoblade298.NeoProfessions.Managers.StorageManager;
+import me.neoblade298.neocore.util.Util;
 
 public class StoredItemReward extends ChestReward {
 	private int id;
@@ -22,7 +22,7 @@ public class StoredItemReward extends ChestReward {
 
 	@Override
 	public void sendMessage(Player p) {
-		Util.sendMessage(p, "&7- &e" + amount + " " + StorageManager.getItem(id).getDisplay());
+		Util.msg(p, "&7- &e" + amount + " " + StorageManager.getItem(id).getDisplay(), false);
 	}
 
 	public static StoredItemReward parse(String args[], int level, String display) {

@@ -3,9 +3,10 @@ package me.Neoblade298.NeoConsumables.bosschests;
 import java.util.HashMap;
 
 import org.apache.commons.lang.StringUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import me.Neoblade298.NeoConsumables.Util;
+import me.neoblade298.neocore.util.Util;
 
 public class GearReward extends ChestReward {
 	private int level;
@@ -27,13 +28,13 @@ public class GearReward extends ChestReward {
 
 	@Override
 	public void giveReward(Player p, int level) {
-		Util.serverCommand("gear give " + p.getName() + " " + rarity + " " + type + " " + this.level);
+		Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gear give " + p.getName() + " " + rarity + " " + type + " " + this.level);
 	}
 
 	@Override
 	public void sendMessage(Player p) {
 		String color = colorcodes.get(rarity);
-		Util.sendMessage(p, "&7- a(n) " + color + rarity.substring(0,1).toUpperCase() + rarity.substring(1) + " &7item!");
+		Util.msg(p, "&7- a(n) " + color + rarity.substring(0,1).toUpperCase() + rarity.substring(1) + " &7item!", false);
 	}
 
 	public int getLevel() {

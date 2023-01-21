@@ -19,12 +19,12 @@ import me.Neoblade298.NeoConsumables.objects.FoodConsumable;
 import me.Neoblade298.NeoConsumables.objects.Rarity;
 import me.Neoblade298.NeoConsumables.objects.StoredAttributes;
 import me.Neoblade298.NeoConsumables.objects.TokenConsumable;
-import me.neoblade298.neocore.NeoCore;
-import me.neoblade298.neocore.info.BossInfo;
-import me.neoblade298.neocore.info.InfoAPI;
-import me.neoblade298.neocore.instancing.InstanceType;
-import me.neoblade298.neocore.player.PlayerFields;
-import me.neoblade298.neocore.player.PlayerTags;
+import me.neoblade298.neocore.bukkit.InstanceType;
+import me.neoblade298.neocore.bukkit.NeoCore;
+import me.neoblade298.neocore.bukkit.info.BossInfo;
+import me.neoblade298.neocore.bukkit.info.InfoAPI;
+import me.neoblade298.neocore.bukkit.player.PlayerFields;
+import me.neoblade298.neocore.bukkit.player.PlayerTags;
 import net.md_5.bungee.api.ChatColor;
 
 import java.io.File;

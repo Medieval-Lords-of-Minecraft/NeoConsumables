@@ -1,8 +1,10 @@
 package me.Neoblade298.NeoConsumables.bosschests;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import me.Neoblade298.NeoConsumables.Util;
+import me.neoblade298.neocore.util.Util;
+
 
 public class RelicReward extends ChestReward {
 	private String mob;
@@ -15,12 +17,12 @@ public class RelicReward extends ChestReward {
 
 	@Override
 	public void giveReward(Player p, int level) {
-		Util.serverCommand("relic give " + p.getName() + " Relic" + mob);
+		Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "relic give " + p.getName() + " Relic" + mob);
 	}
 
 	@Override
 	public void sendMessage(Player p) {
-		Util.sendMessage(p, "&7- a(n) &4&l" + this.display + " Relic&7!");
+		Util.msg(p, "&7- a(n) &4&l" + this.display + " Relic&7!", false);
 	}
 
 	public String getMob() {
