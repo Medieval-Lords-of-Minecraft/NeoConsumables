@@ -12,7 +12,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import de.tr7zw.nbtapi.NBTItem;
 import me.Neoblade298.NeoConsumables.Consumables;
-import me.neoblade298.neocore.util.Util;
+import me.neoblade298.neocore.bukkit.util.BukkitUtil;
+
 
 public class TokenConsumable extends Consumable implements GeneratableConsumable {
 	ArrayList<String> commands, negatePerms, baselore;
@@ -70,7 +71,7 @@ public class TokenConsumable extends Consumable implements GeneratableConsumable
 		// negate perms
 		for (String perm : negatePerms) {
 			if (p.hasPermission(perm)) {
-				Util.msg(p, "&cThis token is currently active.");
+				BukkitUtil.msg(p, "&cThis token is currently active.");
 				return false;
 			}
 		}
@@ -80,12 +81,12 @@ public class TokenConsumable extends Consumable implements GeneratableConsumable
 		long timestamp = nbti.getLong("timestamp");
 		String player = nbti.getString("player");
 		if (boundToPlayer && !player.equalsIgnoreCase(p.getName())) {
-			Util.msg(p, "&cThis token is bound to " + player + "!");
+			BukkitUtil.msg(p, "&cThis token is bound to " + player + "!");
 			return false;
 		}
 		
 		if (millisToExpire != -1 && timestamp + millisToExpire < System.currentTimeMillis()) {
-			Util.msg(p, "&cThis token has already expired!");
+			BukkitUtil.msg(p, "&cThis token has already expired!");
 			p.getInventory().removeItem(item);
 			return false;
 		}

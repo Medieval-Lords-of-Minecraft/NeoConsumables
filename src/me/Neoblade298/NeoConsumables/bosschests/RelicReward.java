@@ -3,7 +3,9 @@ package me.Neoblade298.NeoConsumables.bosschests;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import me.neoblade298.neocore.util.Util;
+import me.neoblade298.neocore.bukkit.util.BukkitUtil;
+
+
 
 
 public class RelicReward extends ChestReward {
@@ -22,7 +24,7 @@ public class RelicReward extends ChestReward {
 
 	@Override
 	public void sendMessage(Player p) {
-		Util.msg(p, "&7- a(n) &4&l" + this.display + " Relic&7!", false);
+		BukkitUtil.msg(p, "&7- a(n) &4&l" + this.display + " Relic&7!", false);
 	}
 
 	public String getMob() {

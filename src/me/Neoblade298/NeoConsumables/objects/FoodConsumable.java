@@ -34,7 +34,8 @@ import me.Neoblade298.NeoConsumables.SkullCreator;
 import me.Neoblade298.NeoConsumables.runnables.AttrRemoveRunnable;
 import me.Neoblade298.NeoConsumables.runnables.HealthRunnable;
 import me.Neoblade298.NeoConsumables.runnables.ManaRunnable;
-import me.neoblade298.neocore.util.Util;
+import me.neoblade298.neocore.bukkit.util.BukkitUtil;
+
 
 public class FoodConsumable extends Consumable implements GeneratableConsumable {
 	private static int defaultCooldown = 45000;
@@ -90,7 +91,7 @@ public class FoodConsumable extends Consumable implements GeneratableConsumable 
 		}
 		
 		if (SkillAPI.getPlayerData(p) == null || SkillAPI.getPlayerData(p).getMainClass() == null) {
-			Util.msg(p, "&cYou must have a class to use this consumable!");
+			BukkitUtil.msg(p, "&cYou must have a class to use this consumable!");
 			return false;
 		}
 

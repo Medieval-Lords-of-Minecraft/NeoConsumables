@@ -6,7 +6,9 @@ import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import me.neoblade298.neocore.util.Util;
+import me.neoblade298.neocore.bukkit.util.BukkitUtil;
+
+
 
 public class GearReward extends ChestReward {
 	private int level;
@@ -34,7 +36,7 @@ public class GearReward extends ChestReward {
 	@Override
 	public void sendMessage(Player p) {
 		String color = colorcodes.get(rarity);
-		Util.msg(p, "&7- a(n) " + color + rarity.substring(0,1).toUpperCase() + rarity.substring(1) + " &7item!", false);
+		BukkitUtil.msg(p, "&7- a(n) " + color + rarity.substring(0,1).toUpperCase() + rarity.substring(1) + " &7item!", false);
 	}
 
 	public int getLevel() {
