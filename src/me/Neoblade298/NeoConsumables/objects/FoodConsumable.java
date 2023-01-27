@@ -34,7 +34,7 @@ import me.Neoblade298.NeoConsumables.SkullCreator;
 import me.Neoblade298.NeoConsumables.runnables.AttrRemoveRunnable;
 import me.Neoblade298.NeoConsumables.runnables.HealthRunnable;
 import me.Neoblade298.NeoConsumables.runnables.ManaRunnable;
-import me.neoblade298.neocore.bukkit.util.BukkitUtil;
+import me.neoblade298.neocore.bukkit.util.Util;
 
 
 public class FoodConsumable extends Consumable implements GeneratableConsumable {
@@ -91,7 +91,7 @@ public class FoodConsumable extends Consumable implements GeneratableConsumable 
 		}
 		
 		if (SkillAPI.getPlayerData(p) == null || SkillAPI.getPlayerData(p).getMainClass() == null) {
-			BukkitUtil.msg(p, "&cYou must have a class to use this consumable!");
+			Util.msg(p, "&cYou must have a class to use this consumable!");
 			return false;
 		}
 

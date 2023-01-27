@@ -3,7 +3,7 @@ package me.Neoblade298.NeoConsumables.bosschests;
 import org.bukkit.entity.Player;
 
 import me.Neoblade298.NeoProfessions.Managers.AugmentManager;
-import me.neoblade298.neocore.bukkit.util.BukkitUtil;
+import me.neoblade298.neocore.bukkit.util.Util;
 
 
 public class AugmentReward extends ChestReward {
@@ -22,7 +22,7 @@ public class AugmentReward extends ChestReward {
 
 	@Override
 	public void sendMessage(Player p) {
-		BukkitUtil.msg(p, "&7- a &6Lv " + level + " Augment&7!", false);
+		Util.msg(p, "&7- a &6Lv " + level + " Augment&7!", false);
 	}
 
 	public int getLevel() {

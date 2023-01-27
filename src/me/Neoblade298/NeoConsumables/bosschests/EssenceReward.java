@@ -3,7 +3,7 @@ package me.Neoblade298.NeoConsumables.bosschests;
 import org.bukkit.entity.Player;
 
 import me.Neoblade298.NeoProfessions.Managers.CurrencyManager;
-import me.neoblade298.neocore.bukkit.util.BukkitUtil;
+import me.neoblade298.neocore.bukkit.util.Util;
 
 
 public class EssenceReward extends ChestReward {
@@ -22,7 +22,7 @@ public class EssenceReward extends ChestReward {
 
 	@Override
 	public void sendMessage(Player p) {
-		BukkitUtil.msg(p, "&7- &e" + amount + " &cLv " + level + " essence&7!", false);
+		Util.msg(p, "&7- &e" + amount + " &cLv " + level + " essence&7!", false);
 	}
 
 	public int getAmount() {

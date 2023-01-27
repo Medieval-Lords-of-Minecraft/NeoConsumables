@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import me.neoblade298.neocore.bukkit.bungee.BungeeAPI;
-import me.neoblade298.neocore.bukkit.util.BukkitUtil;
+import me.neoblade298.neocore.bukkit.util.Util;
 
 
 public class ResearchBookReward extends ChestReward {
@@ -31,10 +31,10 @@ public class ResearchBookReward extends ChestReward {
 	@Override
 	public void sendMessage(Player p) {
 		if (this.type.equalsIgnoreCase("normal")) {
-			BukkitUtil.msg(p, "&7- a(n) &4&l" + display + " &7research book!", false);
+			Util.msg(p, "&7- a(n) &4&l" + display + " &7research book!", false);
 		}
 		else {
-			BukkitUtil.msg(p, "&7- an advanced &4&l" + display + " &7research book!", false);
+			Util.msg(p, "&7- an advanced &4&l" + display + " &7research book!", false);
 			BungeeAPI.broadcast("&4[&c&lMLMC&4] &e" + p.getName() + " &7has found an advanced &4&l" + display + " &7research book!");
 		}
 	}
