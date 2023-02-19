@@ -37,6 +37,7 @@ import java.util.logging.Level;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.block.Container;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -340,6 +341,9 @@ public class Consumables extends JavaPlugin implements Listener {
 			return;
 		}
 		if (!e.getHand().equals(EquipmentSlot.HAND)) {
+			return;
+		}
+		if (e.getAction() == Action.RIGHT_CLICK_BLOCK && e.getClickedBlock().getState() instanceof Container) {
 			return;
 		}
 		if (!NeoCore.isLoaded(p)) return;
