@@ -23,7 +23,7 @@ import me.neoblade298.neocore.bukkit.io.IOComponent;
 public class ConsumableManager implements Listener, IOComponent {
 	public static HashMap<UUID, PlayerCooldowns> cds = new HashMap<UUID, PlayerCooldowns>();
 	public static HashMap<UUID, DurationEffects> effects = new HashMap<UUID, DurationEffects>();
-	public static HashSet<UUID> loading = new HashSet<UUID>();
+	public static HashSet<UUID> needsEffects = new HashSet<UUID>();
 	private static Consumables main;
 	
 	public ConsumableManager(Consumables main) {
@@ -93,16 +93,13 @@ public class ConsumableManager implements Listener, IOComponent {
 							Bukkit.getLogger().log(Level.INFO, "[NeoConsumables] Effect was placed in database");
 						}
 						ConsumableManager.effects.put(uuid, effs);
-						startEffects(uuid);
+						needsEffects.add(uuid); // Used strictly in SkillAPIListener
 					}
 				}
 			}
 		} catch (Exception e) {
 			Bukkit.getLogger().log(Level.WARNING, "Consumables failed to load effects for " + uuid);
 			e.printStackTrace();
-		}
-		finally {
-			loading.remove(p.getUniqueId());
 		}
 	}
 	
