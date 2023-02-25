@@ -221,7 +221,12 @@ public class FoodConsumable extends Consumable implements GeneratableConsumable 
 		// Health and mana regen
 		PlayerData data = SkillAPI.getPlayerData(p);
 		if (healthReps == 0 && !p.isDead()) {
+			if (health >= 0) {
 				p.setHealth(Math.min(p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue(), p.getHealth() + health));
+			}
+			else {
+				p.damage(health);
+			}
 		}
 		else if (healthReps > 0 && !p.isDead()) {
 			tasks.add(new HealthRunnable(p, health, healthReps).runTaskTimer(main, 0, healthPeriod * 20));
@@ -229,7 +234,12 @@ public class FoodConsumable extends Consumable implements GeneratableConsumable 
 		
 		if (data.getMainClass().getData().getManaName().contains("MP")) {
 			if (manaReps == 0 && !p.isDead()) {
-				data.setMana(Math.min(data.getMaxMana(), data.getMana() + mana));
+				if (mana >= 0) {
+					data.setMana(Math.min(data.getMaxMana(), data.getMana() + mana));
+				}
+				else {
+					data.setMana(Math.max(0, data.getMana() - mana));
+				}
 			}
 			else if (manaReps > 0 && !p.isDead()) {
 				tasks.add(new ManaRunnable(p, mana, manaReps).runTaskTimer(main, 0, manaPeriod * 20));
@@ -283,18 +293,21 @@ public class FoodConsumable extends Consumable implements GeneratableConsumable 
 			line = "§aHP +" + health + "/" + (healthPeriod == 0 ? healthPeriod + "s" : "s");
 			line += " [" + healthReps + "x]";
 		}
-		else if (this.health > 0) {
-			line = "§aHP +" + health;
+		else if (this.health != 0) {
+			char symbol = this.health >= 0 ? '+' : '-';
+			line = "§aHP " + symbol + health;
 		}
-		if (!line.isEmpty() && this.mana > 0) {
+		if (!line.isEmpty() && this.mana != 0) {
 			line += "§7, ";
 		}
 		if (this.manaReps > 1) {
-			line += "§9MP +" + mana + "/" + (manaPeriod == 0 ? manaPeriod + "s" : "s");
+			char symbol = this.mana >= 0 ? '+' : '-';
+			line += "§9MP " + symbol+ mana + "/" + (manaPeriod == 0 ? manaPeriod + "s" : "s");
 			line += " [" + manaReps + "x]";
 		}
-		else if (this.mana > 0) {
-			line = "§aMP +" + mana;
+		else if (this.mana != 0) {
+			char symbol = this.mana >= 0 ? '+' : '-';
+			line = "§aMP " + symbol + mana;
 		}
 		if (!line.isEmpty()) {
 			lore.add(line);
@@ -324,7 +337,8 @@ public class FoodConsumable extends Consumable implements GeneratableConsumable 
 		if (!attributes.isEmpty()) {
 			lore.add("§cAttributes [" + attributeTime + "s]:");
 			for (Entry<String, Integer> ent : attributes.getAttrs().entrySet()) {
-				lore.add("§c" + StringUtils.capitalize(ent.getKey()) + " +" + ent.getValue());
+				char symbol = ent.getValue() >= 0 ? '+' : '-';
+				lore.add("§c" + StringUtils.capitalize(ent.getKey()) + " " + symbol + ent.getValue());
 			}
 		}
 		

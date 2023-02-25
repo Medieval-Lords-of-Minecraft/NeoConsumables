@@ -25,7 +25,12 @@ public class HealthRunnable extends BukkitRunnable {
             SkillHealEvent event = new SkillHealEvent(p, p, this.healing, true);
             Bukkit.getPluginManager().callEvent(event);
             if (!event.isCancelled()) {
-    			p.setHealth(Math.min(p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue(), p.getHealth() + event.getAmount()));
+            	if (event.getAmount() >= 0) {
+        			p.setHealth(Math.min(p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue(), p.getHealth() + event.getAmount()));
+            	}
+            	else {
+            		p.damage(event.getAmount());
+            	}
             }
 			if (this.reps <= 0) {
 				this.cancel();
